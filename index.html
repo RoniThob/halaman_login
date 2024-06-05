@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="widht-device-widht, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+        <title>LOGIN_WEB</title>
+    </head>
+    <body>
+        <section>
+            <div id="clock">
+                <div id="hrDots" style="--clr:black;"></div>
+                <div id="minDots" style="--clr:darkblue;"></div>
+                <div id="secDots" style="--clr:darkred;"></div>
+            </div>
+            <script>
+               function clock (){
+                let secDots = document.getElementById('secDots');
+                let minDots = document.getElementById('minDots');
+                let hrDots = document.getElementById('hrDots');
+    
+                var date = new Date();
+                var hours = date.getHours() % 12 // mengubah format jam 12 jam format
+                var amPm = date.getHours() >= 12 ? 'PM' : 'AM';
+                hours = hours === 0 ? 12 : hours //
+                var minutes = date.getMinutes();
+                var seconds = date.getSeconds();
+    
+    
+                var  secondsDots = '';
+                for (var i = 1; i < 61; i++){
+                    var rotation = i * 6;
+                    if (i === seconds){
+                        secondsDots += '<div class="dot active" style="transform: rotate('+rotation+'deg)"></div>';
+                    }
+                    else {
+                        secondsDots += '<div class="dot" style="transform: rotate('+rotation+'deg)"></div>';    
+                    }
+                }
+    
+                var  minutesDots = '';
+                for (var i = 1; i < 61; i++){
+                    var rotation = i * 6;
+                    if (i === minutes){
+                        minutesDots += '<div class="dot active" style="transform: rotate('+rotation+'deg)"></div>';
+                    }
+                    else {
+                        minutesDots += '<div class="dot" style="transform: rotate('+rotation+'deg)"></div>';    
+                    }
+                }
+                var  hoursDots = '';
+                for (var i = 1; i < 13; i++){
+                    var rotation = i * 30;
+                    if (i === hours){
+                        hoursDots += '<div class="dot active" style="transform: rotate('+rotation+'deg)"></div>';
+                    }
+                    else {
+                        hoursDots += '<div class="dot" style="transform: rotate('+rotation+'deg)"></div>';    
+                    }
+                }
+    
+                secDots.innerHTML = secondsDots + '<b>' +amPm + '</b>' + '<h2>' + zero(seconds) + '<br><span>Seconds</span></h2>';
+                minDots.innerHTML = minutesDots + '<h2>' + zero(minutes)+  '<br><span>Minutes</span> </h2>';
+                hrDots.innerHTML = hoursDots + '<h2>' + zero(hours)+ '<br><span>Hours</span></h2>';
+               }
+               
+    
+               function zero(number){
+                if (number < 10 ){
+                    return '0' + number;    
+                }
+                return number;
+               }
+               setInterval(clock,1000);
+    
+            </script>
+        </section>
+      
+        <section>
+        <div class="container" id="container">
+            <div class="form-container sign-up">
+                <form>
+                    <h1>Membuat Akun</h1>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <span>gunakan email untuk mendaftar</span>
+                    <input type="text" placeholder="Nama">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <button>Mendaftar</button>
+                </form>
+            </div>
+            <div class="form-container sign-in">
+                <form>
+                    <h1>Masuk</h1>
+                    <div class="social-icons">
+                        <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <span>gunakan email anda untuk masuk *percobaan</span>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <a href="#">Lupa Password?</a>
+                    <a href="https://ronithob.github.io/Web_thb1/" target="_blank"><button>Masuk</button></a>
+                </form>
+            </div>
+            <div class="toggle-container">
+                <div class="toggle">
+                    <div class="toggle-panel toggle-left">
+                        <h1>Selamat datang kembali!</h1>
+                        <p>masukan detail alamat email anda untuk kembali</p>
+                        <button class="hidden" id="login">Masuk</button>
+                    </div>
+                    <div class="toggle-panel toggle-right">
+                        <h1>Selamat datang !</h1>
+                        <p>masukan dengan detail alamat email anda untuk melanjutkan</p>
+                        <button class="hidden" id="register">Mendaftar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <script src="script.js"></script>
+    </body>
+</html>
